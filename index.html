@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth scroll-pt-20">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeevFarm | Premium Mithila Makhana</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                green: "#235347", // Primary Premium Green
+                greenLight: "#E8F0ED", // Soft background tint for green
+                navy: "#112240", // Deep navy for high-contrast headings & footer
+                charcoal: "#334155", // Charcoal gray for readable body text
+                cream: "#F9F6F0", // Soft cream background
+                gold: "#D4AF37", // Elegant Gold for accents
+                coral: "#F26457", // Coral used sparingly (badges/highlights)
+                white: "#FFFFFF",
+              },
+              shop: {
+                amazon: "#FF9900",
+                flipkart: "#2874F0",
+              },
+            },
+            animation: {
+              marquee: "marquee 25s linear infinite",
+              float: "float 4s ease-in-out infinite",
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "scale-up": "scale-up 20s ease-in-out infinite alternate",
+            },
+            keyframes: {
+              marquee: {
+                "0%": { transform: "translateX(0%)" },
+                "100%": { transform: "translateX(-100%)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-15px)" },
+              },
+              "scale-up": {
+                "0%": { transform: "scale(1)" },
+                "100%": { transform: "scale(1.1)" },
+              },
+            },
+            boxShadow: {
+              card: "0 10px 40px -10px rgba(17, 34, 64, 0.08)",
+              button: "0 8px 20px -6px rgba(35, 83, 71, 0.4)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f9f6f0;
+        color: #334155;
+      }
+
+      /* Hide Scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Scroll Animations */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .reveal-up.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Image Masking for clean look */
+      .product-img-bg {
+        background: radial-gradient(circle at center, #ffffff 0%, #f9f6f0 70%);
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased overflow-x-hidden">
+    <!-- 1. Top Announcement Bar (Commented out for now) -->
+    <!-- 
+    <div class="fixed top-0 left-0 w-full bg-brand-green text-white text-xs sm:text-sm font-semibold py-2.5 z-50 text-center tracking-wide shadow-sm">
+        ✨ 100% Pure Mithila Makhana • Sourced Directly from Farmers
+    </div> 
+    -->
+
+    <!-- 2. Navbar -->
+    <!-- Note: Changed top to 0 since announcement bar is hidden -->
+    <header
+      id="navbar"
+      class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-40 transition-all duration-300"
+    >
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-10 h-[76px] flex items-center justify-between"
+      >
+        <a
+          href="#"
+          class="text-2xl font-extrabold text-brand-navy tracking-tighter flex items-center gap-2"
+        >
+          <i class="fa-solid fa-leaf text-brand-green"></i> NeevFarm
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 font-semibold text-sm text-brand-charcoal"
+        >
+          <a href="#shop" class="hover:text-brand-green transition-colors"
+            >Shop</a
+          >
+          <a href="#range" class="hover:text-brand-green transition-colors"
+            >Flavors</a
+          >
+          <a href="#story" class="hover:text-brand-green transition-colors"
+            >Our Story</a
+          >
+          <a href="#contact" class="hover:text-brand-green transition-colors"
+            >Contact</a
+          >
+        </nav>
+
+        <a
+          href="#shop"
+          class="bg-brand-green text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand-navy transition-colors shadow-button transform hover:scale-105 duration-200"
+        >
+          Buy Now
+        </a>
+      </div>
+    </header>
+
+    <!-- 3. Hero Section (Image Background + Overlay) -->
+    <section
+      class="relative w-full min-h-[85vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden"
+    >
+      <!-- Animated Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="../assets/hero3.png"
+          alt="Makhana Farm Background"
+          class="w-full h-full object-cover animate-scale-up"
+          onerror="
+            this.src =
+              'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=1920&auto=format&fit=crop'
+          "
+        />
+        <!-- Premium Dark Gradient Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-green/40"
+        ></div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10 w-full pt-32 lg:pt-40 pb-20"
+      >
+        <div class="max-w-2xl reveal-up">
+          <!-- Floating Badge -->
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-gold font-bold text-xs uppercase tracking-widest mb-6 shadow-xl"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"
+            ></span>
+            Premium Harvest
+          </div>
+
+          <!-- Hero Headline -->
+          <h1
+            class="text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg"
+          >
+            The Crunch of <br />
+            <span class="text-brand-greenLight">Pure Mithila.</span>
+          </h1>
+
+          <!-- Hero Subtitle -->
+          <p
+            class="text-lg text-brand-cream/90 mb-10 font-medium leading-relaxed drop-shadow-md max-w-xl"
+          >
+            Hand-harvested from the heartland of Makhana, our foxnuts are
+            traditionally roasted to golden perfection. Unadulterated,
+            guilt-free, and irresistibly crunchy.
+          </p>
+
+          <!-- CTAs -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-start gap-4"
+          >
+            <a
+              href="#shop"
+              class="w-full sm:w-auto px-8 py-4 bg-brand-green text-white rounded-full font-bold text-lg hover:bg-white hover:text-brand-green transition-all shadow-[0_0_20px_rgba(35,83,71,0.6)] flex items-center justify-center gap-2 transform hover:-translate-y-1"
+            >
+              Explore Product <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a
+              href="#story"
+              class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2"
+            >
+              Our Story
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div
+            class="mt-10 flex items-center justify-start gap-6 text-sm font-semibold text-brand-cream/80"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check-circle text-brand-gold text-lg"></i>
+              100% Natural
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check-circle text-brand-gold text-lg"></i>
+              Direct from Farm
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Infinite Marquee (Navy + Gold) -->
+    <div
+      class="bg-brand-navy py-4 overflow-hidden flex border-y border-brand-navy"
+    >
+      <div class="flex whitespace-nowrap animate-marquee">
+        <!-- Repeat enough times to cover screen -->
+        <div
+          class="flex items-center text-brand-cream font-bold text-sm tracking-widest uppercase mx-4 gap-8"
+        >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i> No
+            Preservatives</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Gluten Free</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i> High
+            in Protein</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Vegan</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Directly Sourced</span
+          >
+        </div>
+        <div
+          class="flex items-center text-brand-cream font-bold text-sm tracking-widest uppercase mx-4 gap-8"
+        >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i> No
+            Preservatives</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Gluten Free</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i> High
+            in Protein</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Vegan</span
+          >
+          <span
+            ><i class="fa-solid fa-star text-xs mr-2 text-brand-gold"></i>
+            Directly Sourced</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Featured Product Section -->
+    <section id="shop" class="py-20 lg:py-28 bg-white relative">
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <div class="text-center mb-16 reveal-up">
+          <h2 class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-4">
+            Our Signature Bestseller
+          </h2>
+          <p class="text-brand-charcoal font-medium">
+            Grab your pack of authentic goodness today.
+          </p>
+        </div>
+
+        <div
+          class="bg-brand-cream border border-gray-100 rounded-[2rem] p-6 lg:p-12 shadow-card grid lg:grid-cols-2 gap-12 items-center reveal-up"
+        >
+          <!-- Product Image -->
+          <div
+            class="relative product-img-bg rounded-3xl p-8 flex justify-center overflow-hidden group"
+          >
+            <img
+              src="../assets/product.jpeg"
+              alt="NeevFarm Mithila Makhana"
+              class="w-[85%] max-w-[350px] object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 z-10"
+              onerror="
+                this.src =
+                  'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=800&auto=format&fit=crop'
+              "
+            />
+            <div
+              class="absolute top-4 left-4 bg-brand-coral text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm uppercase tracking-wide z-20"
+            >
+              200g Pack
+            </div>
+          </div>
+
+          <!-- Product Details -->
+          <div>
+            <h3
+              class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-2"
+            >
+              Mithila Makhana
+            </h3>
+            <div
+              class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-6 border-b border-gray-200 pb-4"
+            >
+              Classic Roasted
+            </div>
+
+            <p class="text-brand-charcoal mb-8 leading-relaxed">
+              Sourced from the pristine waters of Bihar, our makhanas are slowly
+              roasted to retain their natural crunch and nutritional value. The
+              perfect swap for unhealthy fried chips.
+            </p>
+
+            <!-- Features -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+              >
+                <i
+                  class="fa-solid fa-bowl-rice text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                ></i>
+                <span class="font-bold text-sm text-brand-navy"
+                  >Rich in Calcium</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+              >
+                <i
+                  class="fa-solid fa-leaf text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                ></i>
+                <span class="font-bold text-sm text-brand-navy"
+                  >Plant Protein</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+              >
+                <i
+                  class="fa-solid fa-droplet-slash text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                ></i>
+                <span class="font-bold text-sm text-brand-navy"
+                  >Zero Trans Fat</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+              >
+                <i
+                  class="fa-solid fa-clock text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                ></i>
+                <span class="font-bold text-sm text-brand-navy"
+                  >6 Month Shelf Life</span
+                >
+              </div>
+            </div>
+
+            <!-- Marketplace Buttons -->
+            <div class="space-y-4">
+              <p
+                class="text-xs font-bold text-brand-charcoal uppercase tracking-widest text-center sm:text-left mb-2"
+              >
+                Available for purchase on
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://www.amazon.in/"
+                  target="_blank"
+                  class="flex-1 bg-white border-2 border-shop-amazon text-gray-900 rounded-xl font-bold text-lg py-3.5 hover:bg-shop-amazon hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm"
+                >
+                  <i
+                    class="fa-brands fa-amazon text-xl group-hover:scale-110 transition-transform"
+                  ></i>
+                  Amazon
+                </a>
+                <a
+                  href="https://www.flipkart.com/"
+                  target="_blank"
+                  class="flex-1 bg-white border-2 border-shop-flipkart text-shop-flipkart rounded-xl font-bold text-lg py-3.5 hover:bg-shop-flipkart hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm"
+                >
+                  <img
+                    src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/logo_lite-cbb357.png"
+                    alt="Flipkart"
+                    class="h-5 group-hover:brightness-0 group-hover:invert transition-all"
+                  />
+                  Flipkart
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.5 Product Range Carousel -->
+    <section
+      id="range"
+      class="py-20 bg-brand-cream border-t border-gray-200 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <!-- Header & Controls -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-10 reveal-up"
+        >
+          <div class="mb-4 md:mb-0">
+            <h2
+              class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-2"
+            >
+              Discover Our Flavors
+            </h2>
+            <p class="text-brand-charcoal font-medium">
+              Exciting varieties packed with the same authentic goodness.
+            </p>
+          </div>
+          <div class="hidden md:flex gap-3">
+            <button
+              id="prevCarousel"
+              class="w-12 h-12 rounded-full border border-brand-green text-brand-green flex items-center justify-center hover:bg-brand-green hover:text-white transition-colors"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button
+              id="nextCarousel"
+              class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center hover:bg-brand-navy transition-colors shadow-button"
+            >
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Wrapper -->
+        <div
+          id="productCarousel"
+          class="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 pt-4 reveal-up"
+          style="scroll-behavior: smooth"
+        >
+          <!-- Flavor 1 -->
+          <div
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+          >
+            <div
+              class="bg-brand-cream rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+            >
+              <span
+                class="absolute top-3 left-3 bg-brand-coral text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-20"
+                >Bestseller</span
+              >
+              <img
+                src="../assets/product.jpeg"
+                alt="Classic Roasted"
+                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=400&auto=format&fit=crop'
+                "
+              />
+            </div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-extrabold text-xl text-brand-navy">
+                Classic Roasted
+              </h3>
+              <span class="font-bold text-brand-green">₹299</span>
+            </div>
+            <p class="text-sm text-brand-charcoal mb-6 line-clamp-2">
+              Lightly salted with pink Himalayan salt. The perfect everyday
+              staple.
+            </p>
+            <a
+              href="#shop"
+              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              >Buy Now</a
+            >
+          </div>
+
+          <!-- Flavor 2 -->
+          <div
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+          >
+            <div
+              class="bg-[#fff5ee] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+            >
+              <img
+                src="../assets/product.jpeg"
+                alt="Spicy Peri Peri"
+                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                style="filter: hue-rotate(140deg) saturate(1.2)"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=400&auto=format&fit=crop'
+                "
+              />
+            </div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-extrabold text-xl text-brand-navy">
+                Spicy Peri Peri
+              </h3>
+              <span class="font-bold text-brand-green">₹299</span>
+            </div>
+            <p class="text-sm text-brand-charcoal mb-6 line-clamp-2">
+              A fiery blend of spices for those who crave a delicious kick in
+              their snack.
+            </p>
+            <a
+              href="#shop"
+              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              >Buy Now</a
+            >
+          </div>
+
+          <!-- Flavor 3 -->
+          <div
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+          >
+            <div
+              class="bg-[#f5f8ff] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+            >
+              <img
+                src="../assets/product.jpeg"
+                alt="Cream & Onion"
+                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                style="filter: hue-rotate(220deg) brightness(1.1)"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1515543904379-3d757afe72e3?q=80&w=400&auto=format&fit=crop'
+                "
+              />
+            </div>
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-extrabold text-xl text-brand-navy">
+                Cream & Onion
+              </h3>
+              <span class="font-bold text-brand-green">₹299</span>
+            </div>
+            <p class="text-sm text-brand-charcoal mb-6 line-clamp-2">
+              The classic favorite flavor but without the guilt of fried potato
+              chips.
+            </p>
+            <a
+              href="#shop"
+              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              >Buy Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. The NeevFarm Way (Green + Cream + Gold) -->
+    <section id="story" class="py-20 bg-brand-green text-white relative">
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <div class="text-center mb-16 reveal-up">
+          <h2 class="text-3xl lg:text-4xl font-extrabold mb-4 text-white">
+            The NeevFarm Way
+          </h2>
+          <p class="text-brand-cream/90 font-medium max-w-2xl mx-auto">
+            We cut out the middlemen to bring you the finest quality foxnuts
+            directly from the ponds of Mithila to your pantry.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 relative">
+          <!-- Connecting Line for desktop -->
+          <div
+            class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-brand-gold/30 z-0"
+          ></div>
+
+          <!-- Step 1 -->
+          <div class="text-center relative z-10 reveal-up">
+            <div
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+            >
+              <i class="fa-solid fa-water"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Sourced Locally</h3>
+            <p class="text-sm text-brand-cream/80 leading-relaxed px-4">
+              Harvested by skilled local farmers from the natural ponds of the
+              Mithila region.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div
+            class="text-center relative z-10 reveal-up"
+            style="transition-delay: 0.1s"
+          >
+            <div
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+            >
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Slow Roasted</h3>
+            <p class="text-sm text-brand-cream/80 leading-relaxed px-4">
+              Processed minimally and slow-roasted to achieve the perfect
+              signature crunch.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div
+            class="text-center relative z-10 reveal-up"
+            style="transition-delay: 0.2s"
+          >
+            <div
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+            >
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Packed with Care</h3>
+            <p class="text-sm text-brand-cream/80 leading-relaxed px-4">
+              Sealed fresh in our premium Madhubani-art inspired packaging to
+              retain purity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Usage Occasions -->
+    <section id="benefits" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <h2
+          class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-12 text-center reveal-up"
+        >
+          Your Perfect Snacking Partner
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 -->
+          <div
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              alt="Chai Time"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+            >
+              <p
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+              >
+                Evening
+              </p>
+              <h3 class="text-white font-bold text-xl">Chai Time Companion</h3>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
+            style="transition-delay: 0.1s"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              alt="Fasting Food"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+            >
+              <p
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+              >
+                Traditional
+              </p>
+              <h3 class="text-white font-bold text-xl">Vrat / Fasting Food</h3>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
+            style="transition-delay: 0.2s"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              alt="Fitness Snack"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+            >
+              <p
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+              >
+                Healthy
+              </p>
+              <h3 class="text-white font-bold text-xl">Post-Workout Crunch</h3>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
+            style="transition-delay: 0.3s"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              alt="Diet Friendly"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+            >
+              <p
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+              >
+                Midnight
+              </p>
+              <h3 class="text-white font-bold text-xl">Guilt-Free Binge</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Redesigned Contact Us Section (Card Template, No Form) -->
+    <section
+      id="contact"
+      class="py-20 lg:py-28 bg-brand-cream border-t border-gray-200"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <div class="text-center mb-16 reveal-up">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold font-bold text-xs uppercase tracking-widest mb-4"
+          >
+            Get In Touch
+          </div>
+          <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-navy mb-4">
+            We'd Love to Hear From You
+          </h2>
+          <p class="text-brand-charcoal text-lg max-w-2xl mx-auto">
+            Have a question about bulk orders, partnerships, or just want to
+            share your snacking experience? Reach out to us directly.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-10 reveal-up">
+          <!-- Contact Card 1: Location -->
+          <div
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-green text-center group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-greenLight rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors"
+            >
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h4 class="font-extrabold text-xl text-brand-navy mb-3">
+              Head Office
+            </h4>
+            <p class="text-brand-charcoal font-medium leading-relaxed">
+              Mithila Region <br />
+              Bihar, India
+            </p>
+          </div>
+
+          <!-- Contact Card 2: Email -->
+          <div
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-gold text-center group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-cream rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors"
+            >
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h4 class="font-extrabold text-xl text-brand-navy mb-3">
+              Email Us
+            </h4>
+            <a
+              href="mailto:hello@neevfarm.com"
+              class="text-brand-charcoal font-medium hover:text-brand-gold transition-colors inline-block"
+            >
+              hello@neevfarm.com
+            </a>
+            <p class="text-sm text-gray-400 mt-2">
+              We typically reply within 24 hours.
+            </p>
+          </div>
+
+          <!-- Contact Card 3: Phone -->
+          <div
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-navy text-center group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-[#eef2f6] rounded-full flex items-center justify-center text-brand-navy text-2xl mb-6 group-hover:bg-brand-navy group-hover:text-white transition-colors"
+            >
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <h4 class="font-extrabold text-xl text-brand-navy mb-3">Call Us</h4>
+            <a
+              href="tel:+919876543210"
+              class="text-brand-charcoal font-medium hover:text-brand-navy transition-colors inline-block"
+            >
+              +91 98765 43210
+            </a>
+            <p class="text-sm text-gray-400 mt-2">Mon-Fri, 9am to 6pm IST</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Footer (Navy + White) -->
+    <footer class="bg-brand-navy text-white border-t-4 border-brand-green">
+      <!-- Main Footer Links -->
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-10 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left"
+      >
+        <div>
+          <a
+            href="#"
+            class="text-2xl font-extrabold text-white tracking-tight flex items-center justify-center md:justify-start gap-2 mb-2"
+          >
+            <i class="fa-solid fa-leaf text-brand-gold"></i> NeevFarm
+          </a>
+          <p class="text-sm text-brand-cream/70">
+            Pureness of nature, delivered straight to your home.
+          </p>
+        </div>
+
+        <div class="flex gap-6">
+          <a
+            href="#"
+            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="#"
+            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            ><i class="fa-brands fa-facebook-f"></i
+          ></a>
+          <a
+            href="#"
+            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            ><i class="fa-brands fa-twitter"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="bg-[#0b162a] py-4 text-center text-xs text-brand-cream/50">
+        <p>&copy; 2026 NeevFarm. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Mobile Sticky Footer CTA (Appears only on mobile) -->
+    <div
+      class="fixed bottom-0 left-0 w-full bg-white px-4 py-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-50 md:hidden flex items-center gap-3 border-t border-gray-100 pb-safe"
+    >
+      <a
+        href="https://www.amazon.in/"
+        target="_blank"
+        class="flex-1 bg-[#FFF9F0] border border-[#FF9900]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2"
+      >
+        <i class="fa-brands fa-amazon text-[#FF9900] text-lg"></i> Amazon
+      </a>
+      <a
+        href="https://www.flipkart.com/"
+        target="_blank"
+        class="flex-1 bg-[#F0F5FF] border border-[#2874F0]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2"
+      >
+        <img
+          src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/logo_lite-cbb357.png"
+          alt="Flipkart"
+          class="h-4 filter brightness-0"
+        />
+        Flipkart
+      </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".reveal-up").forEach((element) => {
+        observer.observe(element);
+      });
+
+      // Carousel Scroll Logic
+      const carousel = document.getElementById("productCarousel");
+      const prevBtn = document.getElementById("prevCarousel");
+      const nextBtn = document.getElementById("nextCarousel");
+
+      if (prevBtn && nextBtn && carousel) {
+        // Scroll amount based roughly on typical card width + gap
+        const scrollAmount = 350;
+
+        nextBtn.addEventListener("click", () => {
+          carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+
+        prevBtn.addEventListener("click", () => {
+          carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
+      }
+    </script>
+  </body>
+</html>

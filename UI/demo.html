@@ -1,0 +1,1463 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeevFarm | Pure Mithila Makhana</title>
+    <meta
+      name="description"
+      content="Premium roasted foxnuts sourced directly from the traditional farms of the Mithila region."
+    />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#F0F5F5",
+                100: "#DDEAEA",
+                200: "#BED6D6",
+                300: "#94BEBF",
+                400: "#6AA2A3",
+                500: "#488587",
+                600: "#356A6C",
+                700: "#2A5556",
+                800: "#234647", // Primary Deep Teal from Packaging
+                900: "#1D3B3C",
+                950: "#0E2122",
+              },
+              surface: "#F5F3EC", // Cream/Beige from the packaging label
+              amazon: "#FF9900",
+              flipkart: "#2874F0",
+            },
+            boxShadow: {
+              glass: "0 8px 32px 0 rgba(35, 70, 71, 0.05)",
+              "glass-hover": "0 12px 40px 0 rgba(35, 70, 71, 0.1)",
+              float: "0 20px 40px -10px rgba(0,0,0,0.08)",
+              "inner-light": "inset 0 2px 4px 0 rgba(255, 255, 255, 0.5)",
+            },
+            transitionTimingFunction: {
+              spring: "cubic-bezier(0.175, 0.885, 0.32, 1.1)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f5f3ec;
+        /* Subtle noise texture for an earthy, organic feel */
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      }
+
+      /* Glassmorphism utilities */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 32px 0 rgba(35, 70, 71, 0.04);
+      }
+
+      .glass-pill {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Abstract blobs */
+      .gradient-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1) translate(0, 0);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.05) translate(20px, -20px);
+          opacity: 0.5;
+        }
+      }
+
+      /* No scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Animation defaults */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .is-revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    </style>
+  </head>
+  <body
+    class="text-brand-950 antialiased selection:bg-brand-200 selection:text-brand-900 pb-24 md:pb-0 relative overflow-x-hidden"
+  >
+    <!-- Sticky Mobile CTA -->
+    <div
+      class="fixed bottom-0 left-0 w-full glass-panel border-t border-white/80 p-3 z-50 md:hidden flex justify-center items-center gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]"
+    >
+      <a
+        href="#buy-now"
+        class="flex-1 bg-amazon text-slate-900 py-3.5 rounded-xl font-bold text-center shadow-sm flex items-center justify-center gap-2 active:scale-95 transition-all"
+      >
+        <svg
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        Amazon
+      </a>
+      <a
+        href="#buy-now"
+        class="flex-1 bg-flipkart text-white py-3.5 rounded-xl font-bold text-center shadow-sm flex items-center justify-center gap-2 active:scale-95 transition-all"
+      >
+        <svg
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        Flipkart
+      </a>
+    </div>
+
+    <!-- Floating Pill Navigation -->
+    <div
+      class="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none transition-transform duration-500"
+      id="nav-wrapper"
+    >
+      <nav
+        class="glass-pill rounded-full px-2 py-2 flex items-center justify-between w-full max-w-5xl pointer-events-auto transition-all shadow-glass hover:shadow-glass-hover"
+      >
+        <div
+          class="flex items-center gap-2 pl-4 cursor-pointer"
+          onclick="window.scrollTo(0, 0)"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 22C12 22 20 18 20 12C20 6 12 2 12 2C12 2 4 6 4 12C4 18 12 22 12 22Z"
+              fill="#234647"
+              stroke="#234647"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 22V12"
+              stroke="#F5F3EC"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span
+            class="text-xl font-bold tracking-tight text-brand-900 pr-4 border-r border-slate-300"
+            >NeevFarm</span
+          >
+        </div>
+        <div class="hidden md:flex items-center gap-1 px-4">
+          <a
+            href="#story"
+            class="text-sm font-semibold text-brand-800 hover:text-brand-950 hover:bg-brand-100/50 px-4 py-2 rounded-full transition-all"
+            >Story</a
+          >
+          <a
+            href="#benefits"
+            class="text-sm font-semibold text-brand-800 hover:text-brand-950 hover:bg-brand-100/50 px-4 py-2 rounded-full transition-all"
+            >Benefits</a
+          >
+          <a
+            href="#testimonials"
+            class="text-sm font-semibold text-brand-800 hover:text-brand-950 hover:bg-brand-100/50 px-4 py-2 rounded-full transition-all"
+            >Reviews</a
+          >
+          <a
+            href="#contact"
+            class="text-sm font-semibold text-brand-800 hover:text-brand-950 hover:bg-brand-100/50 px-4 py-2 rounded-full transition-all"
+            >Contact</a
+          >
+        </div>
+        <div class="pr-1 hidden sm:block">
+          <a
+            href="#buy-now"
+            class="bg-brand-800 hover:bg-brand-900 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-float hover:-translate-y-0.5 inline-block"
+          >
+            Order Online
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section
+      class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 relative max-w-[90rem] mx-auto"
+    >
+      <!-- Abstract Background Orbs matching packaging -->
+      <div
+        class="gradient-blob bg-brand-300/40 w-[500px] h-[500px] top-0 right-0 translate-x-1/3 -translate-y-1/4"
+      ></div>
+      <div
+        class="gradient-blob bg-[#D4A35C]/20 w-[400px] h-[400px] bottom-0 left-0 -translate-x-1/4 translate-y-1/4"
+        style="animation-delay: -5s"
+      ></div>
+
+      <div
+        class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-8"
+      >
+        <!-- Text Content -->
+        <div class="w-full lg:w-[55%] flex flex-col items-start z-10">
+          <div class="reveal-up" style="transition-delay: 100ms">
+            <span
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm"
+            >
+              <span class="relative flex h-2.5 w-2.5">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"
+                ></span>
+              </span>
+              Premium Quality, Naturally Sourced
+            </span>
+          </div>
+
+          <h1
+            class="reveal-up text-6xl md:text-[5.5rem] lg:text-[6.5rem] font-extrabold text-brand-950 leading-[0.9] tracking-tighter mb-8"
+            style="transition-delay: 200ms"
+          >
+            The perfect <br />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-br from-brand-700 to-brand-400 italic font-serif"
+              >crunch.</span
+            >
+          </h1>
+
+          <p
+            class="reveal-up text-lg md:text-xl text-brand-800/80 mb-10 max-w-lg leading-relaxed font-medium"
+            style="transition-delay: 300ms"
+          >
+            Elevate your snacking with authentic Mithila Makhana. Pure, highly
+            nutritious foxnuts gently roasted for a guilt-free indulgence. No
+            preservatives, just nature.
+          </p>
+
+          <!-- Dual Marketplace CTAs -->
+          <div
+            class="reveal-up flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+            style="transition-delay: 400ms"
+          >
+            <a
+              href="https://amazon.in"
+              target="_blank"
+              class="w-full sm:w-auto bg-amazon text-slate-900 px-8 py-4 rounded-full font-bold text-lg shadow-float hover:-translate-y-1 hover:scale-105 duration-300 flex items-center justify-center gap-3"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+              Buy on Amazon
+            </a>
+            <a
+              href="https://flipkart.com"
+              target="_blank"
+              class="w-full sm:w-auto bg-flipkart text-white px-8 py-4 rounded-full font-bold text-lg shadow-float hover:-translate-y-1 hover:scale-105 duration-300 flex items-center justify-center gap-3"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+              Buy on Flipkart
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Image Frame -->
+        <div
+          class="w-full lg:w-[45%] relative reveal-scale z-10"
+          style="transition-delay: 200ms"
+        >
+          <div
+            class="relative w-full aspect-[4/5] rounded-[2.5rem] bg-white p-3 shadow-float transform rotate-2 hover:rotate-0 transition-transform duration-700"
+          >
+            <div
+              class="absolute inset-0 bg-brand-200 rounded-[2.5rem] transform -rotate-4 -z-10"
+            ></div>
+            <!-- Updated with user's uploaded image -->
+            <img
+              src="assets/home.jpeg"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://images.unsplash.com/photo-1599490659213-e2b9527bd08e?auto=format&fit=crop&q=80&w=800';
+              "
+              alt="NeevFarm Mithila Makhana Packet"
+              class="w-full h-full object-cover rounded-[2rem] bg-surface"
+            />
+
+            <!-- Floating UI Element -->
+            <div
+              class="absolute top-8 -left-8 md:-left-12 glass-panel px-6 py-4 rounded-2xl flex items-center gap-4 animate-[bounce_4s_infinite]"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center text-brand-800"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2v20" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div>
+                <p
+                  class="text-[10px] font-bold text-brand-600 uppercase tracking-widest"
+                >
+                  Net Weight
+                </p>
+                <p
+                  class="text-lg font-extrabold text-brand-950 leading-none mt-1"
+                >
+                  200g
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Trust Bar -->
+    <div
+      class="max-w-6xl mx-auto px-6 relative z-20 -mt-10 md:-mt-16 reveal-up"
+    >
+      <div
+        class="glass-panel rounded-3xl p-6 md:p-8 flex flex-wrap justify-center md:justify-between items-center gap-6 divide-x-0 md:divide-x divide-brand-200/50"
+      >
+        <!-- Badges -->
+        <div
+          class="flex items-center gap-3 px-4 flex-1 justify-center min-w-[150px]"
+        >
+          <div class="text-brand-600">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <span class="font-bold text-brand-900 text-sm">Gluten Free</span>
+        </div>
+        <div
+          class="flex items-center gap-3 px-4 flex-1 justify-center min-w-[150px]"
+        >
+          <div class="text-brand-600">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </div>
+          <span class="font-bold text-brand-900 text-sm">High Protein</span>
+        </div>
+        <div
+          class="flex items-center gap-3 px-4 flex-1 justify-center min-w-[150px]"
+        >
+          <div class="text-brand-600">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+              />
+              <path d="M12 6v6l4.25 2.12" />
+            </svg>
+          </div>
+          <span class="font-bold text-brand-900 text-sm">100% Vegan</span>
+        </div>
+        <div
+          class="flex items-center gap-3 px-4 flex-1 justify-center min-w-[150px]"
+        >
+          <div class="text-brand-600">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22A10 10 0 1 0 12 2a10 10 0 0 0 0 20z" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <path d="M9 9h.01M15 9h.01" />
+            </svg>
+          </div>
+          <span class="font-bold text-brand-900 text-sm">No Preservatives</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Bento Box: Product & Benefits -->
+    <section id="benefits" class="py-24 md:py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal-up">
+          <h2
+            class="text-4xl md:text-5xl font-extrabold text-brand-950 tracking-tight mb-4"
+          >
+            Snacking,
+            <span class="text-brand-600 italic font-serif">Redefined.</span>
+          </h2>
+          <p class="text-lg text-brand-800/80 max-w-2xl mx-auto font-medium">
+            Everything your body needs, in a crunch that you'll crave.
+          </p>
+        </div>
+
+        <!-- Bento Grid Layout -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(180px,auto)]"
+        >
+          <!-- Main Product Card (Spans 2 columns on desktop) -->
+          <div
+            class="md:col-span-2 md:row-span-2 glass-panel rounded-[2rem] p-8 md:p-10 flex flex-col md:flex-row items-center gap-10 reveal-up hover:shadow-glass-hover transition-shadow duration-300 relative overflow-hidden group bg-white/40"
+          >
+            <div
+              class="absolute -right-20 -top-20 w-64 h-64 bg-brand-200 rounded-full blur-3xl opacity-50 group-hover:scale-110 transition-transform duration-700"
+            ></div>
+            <div class="w-full md:w-1/2 relative z-10">
+              <img
+                src="assets/home.jpeg"
+                onerror="
+                  this.onerror = null;
+                  this.src =
+                    'https://images.unsplash.com/photo-1599490659213-e2b9527bd08e?auto=format&fit=crop&q=80&w=800';
+                "
+                alt="200g Pack"
+                class="w-full rounded-3xl shadow-lg border border-white/50 group-hover:-translate-y-2 transition-transform duration-500 bg-surface"
+              />
+            </div>
+            <div
+              id="buy-now"
+              class="w-full md:w-1/2 flex flex-col justify-center relative z-10"
+            >
+              <div
+                class="inline-flex bg-brand-100 text-brand-800 text-xs font-bold px-3 py-1 rounded-full w-max mb-4 uppercase tracking-widest"
+              >
+                Our Signature
+              </div>
+              <h3 class="text-3xl font-bold text-brand-950 mb-2">
+                Mithila Makhana
+              </h3>
+              <p class="text-brand-600 font-bold mb-6">200g Premium Pack</p>
+              <p class="text-brand-800/80 mb-8 font-medium leading-relaxed">
+                Sourced directly from the traditional farms of the Mithila
+                region. Heritage cultivation practices passed down through
+                generations.
+              </p>
+
+              <div class="flex items-end gap-4 mb-8">
+                <span
+                  class="text-4xl font-extrabold text-brand-950 leading-none"
+                  >₹299</span
+                >
+              </div>
+
+              <div class="flex flex-col gap-3">
+                <a
+                  href="https://amazon.in"
+                  target="_blank"
+                  class="w-full bg-amazon text-slate-900 px-6 py-3.5 rounded-full font-bold text-base hover:scale-[1.02] shadow-sm transition-all flex items-center justify-center gap-2"
+                >
+                  Buy on Amazon
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <a
+                  href="https://flipkart.com"
+                  target="_blank"
+                  class="w-full bg-flipkart text-white px-6 py-3.5 rounded-full font-bold text-base hover:scale-[1.02] shadow-sm transition-all flex items-center justify-center gap-2"
+                >
+                  Buy on Flipkart
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento Item: Calcium -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300 bg-white/60"
+          >
+            <div
+              class="w-12 h-12 bg-surface rounded-full flex items-center justify-center text-brand-600 shadow-sm mb-6 border border-brand-100"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+                <line x1="16" y1="8" x2="2" y2="22" />
+                <line x1="17.5" y1="15" x2="9" y2="6.5" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-brand-950 mb-2">
+                Rich in Calcium
+              </h4>
+              <p class="text-brand-800/70 font-medium text-sm leading-relaxed">
+                Strengthens bones and teeth. The perfect everyday snack for all
+                ages.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bento Item: Low Fat -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300 bg-white/60"
+            style="transition-delay: 100ms"
+          >
+            <div
+              class="w-12 h-12 bg-surface rounded-full flex items-center justify-center text-brand-600 shadow-sm mb-6 border border-brand-100"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-brand-950 mb-2">
+                Zero Cholesterol
+              </h4>
+              <p class="text-brand-800/70 font-medium text-sm leading-relaxed">
+                A heart-healthy alternative to deep-fried snacks. Light on the
+                stomach.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bento Item: Story Link -->
+          <div
+            id="story"
+            class="md:col-span-3 glass-panel rounded-[2rem] overflow-hidden reveal-up hover:shadow-glass-hover transition-shadow duration-300 relative group min-h-[300px] flex items-center"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1590241088461-12711832047d?auto=format&fit=crop&q=80&w=1200"
+              alt="Farms"
+              class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-900/90 to-brand-800/40"
+            ></div>
+            <div class="relative z-10 p-10 md:p-16 w-full md:w-2/3">
+              <span
+                class="text-brand-200 font-bold uppercase tracking-widest text-xs mb-4 block"
+                >Our Story</span
+              >
+              <h3
+                class="text-3xl md:text-4xl font-bold text-surface mb-4 leading-tight"
+              >
+                Rooted in Tradition.
+              </h3>
+              <p
+                class="text-surface/80 font-medium text-lg leading-relaxed max-w-xl"
+              >
+                Harvested by hand in the serene waters of Mithila. We use
+                traditional roasting methods to ensure every foxnut blooms to
+                its full, crunchy potential. Farm-to-pack freshness that honors
+                the earth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Usage Occasions (Dynamic Image Grid) -->
+    <section
+      class="py-24 bg-surface border-y border-brand-200/30 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <h2
+          class="text-3xl font-bold text-brand-950 mb-12 text-center reveal-up"
+        >
+          Perfect for every moment
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 reveal-up">
+          <!-- Occasion -->
+          <div class="relative rounded-3xl overflow-hidden aspect-[3/4] group">
+            <img
+              src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=600"
+              alt="Evening Snack"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform"
+            >
+              <h3 class="text-white text-xl font-bold mb-1">Chai Time</h3>
+              <div class="h-0.5 w-8 bg-brand-400 rounded-full"></div>
+            </div>
+          </div>
+          <!-- Occasion -->
+          <div class="relative rounded-3xl overflow-hidden aspect-[3/4] group">
+            <img
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600"
+              alt="Diet Snack"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform"
+            >
+              <h3 class="text-white text-xl font-bold mb-1">Desk Snack</h3>
+              <div class="h-0.5 w-8 bg-brand-400 rounded-full"></div>
+            </div>
+          </div>
+          <!-- Occasion -->
+          <div class="relative rounded-3xl overflow-hidden aspect-[3/4] group">
+            <img
+              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600"
+              alt="Fitness Snack"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform"
+            >
+              <h3 class="text-white text-xl font-bold mb-1">Post-Workout</h3>
+              <div class="h-0.5 w-8 bg-brand-400 rounded-full"></div>
+            </div>
+          </div>
+          <!-- Occasion -->
+          <div class="relative rounded-3xl overflow-hidden aspect-[3/4] group">
+            <img
+              src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=600"
+              alt="Fasting Food"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform"
+            >
+              <h3 class="text-white text-xl font-bold mb-1">Fasting/Vrat</h3>
+              <div class="h-0.5 w-8 bg-brand-400 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Testimonials (Exactly 4 Cards Grid) -->
+    <section id="testimonials" class="py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal-up">
+          <span
+            class="text-brand-600 font-bold uppercase tracking-widest text-xs mb-4 block"
+            >Early Reviews</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-extrabold text-brand-950 tracking-tight"
+          >
+            Loved by our first customers.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <!-- Card 1 -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between bg-white/60"
+          >
+            <div>
+              <div class="flex gap-1 text-[#D4A35C] mb-6">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-brand-900 mb-8 font-medium text-lg leading-relaxed"
+              >
+                "Honestly impressed. The makhana is huge and super crunchy. Has
+                completely replaced my evening potato chips habit."
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-800 font-extrabold text-sm shadow-sm border border-brand-100"
+              >
+                AK
+              </div>
+              <div>
+                <p class="font-bold text-brand-950">Aditi K.</p>
+                <p
+                  class="text-xs font-bold text-brand-500 uppercase tracking-widest mt-0.5"
+                >
+                  Verified Buyer
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between bg-white/60"
+            style="transition-delay: 100ms"
+          >
+            <div>
+              <div class="flex gap-1 text-[#D4A35C] mb-6">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-brand-900 mb-8 font-medium text-lg leading-relaxed"
+              >
+                "Perfect pre-workout snack. I love that it doesn't have any
+                heavy oils or artificial taste. Fast delivery from Amazon too!"
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-800 font-extrabold text-sm shadow-sm border border-brand-100"
+              >
+                RS
+              </div>
+              <div>
+                <p class="font-bold text-brand-950">Rohan S.</p>
+                <p
+                  class="text-xs font-bold text-brand-500 uppercase tracking-widest mt-0.5"
+                >
+                  Verified Buyer
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between bg-white/60"
+          >
+            <div>
+              <div class="flex gap-1 text-[#D4A35C] mb-6">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-brand-900 mb-8 font-medium text-lg leading-relaxed"
+              >
+                "My kids love it, and I feel good knowing it's healthy. It stays
+                fresh in the zip-lock pack. Definitely buying again."
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-800 font-extrabold text-sm shadow-sm border border-brand-100"
+              >
+                PM
+              </div>
+              <div>
+                <p class="font-bold text-brand-950">Priya M.</p>
+                <p
+                  class="text-xs font-bold text-brand-500 uppercase tracking-widest mt-0.5"
+                >
+                  Verified Buyer
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="glass-panel rounded-[2rem] p-8 reveal-up flex flex-col justify-between bg-white/60"
+            style="transition-delay: 100ms"
+          >
+            <div>
+              <div class="flex gap-1 text-[#D4A35C] mb-6">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-brand-900 mb-8 font-medium text-lg leading-relaxed"
+              >
+                "Great premium quality. I ordered it from Flipkart and the
+                delivery was prompt. Tastes super authentic and clean."
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-800 font-extrabold text-sm shadow-sm border border-brand-100"
+              >
+                VT
+              </div>
+              <div>
+                <p class="font-bold text-brand-950">Vikram T.</p>
+                <p
+                  class="text-xs font-bold text-brand-500 uppercase tracking-widest mt-0.5"
+                >
+                  Verified Buyer
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Dedicated Contact Section -->
+    <section
+      id="contact"
+      class="py-24 px-6 border-t border-brand-200/50 relative overflow-hidden bg-white/40"
+    >
+      <div class="max-w-4xl mx-auto relative z-10 text-center reveal-up">
+        <span
+          class="text-brand-600 font-bold uppercase tracking-widest text-xs mb-4 block"
+          >Get In Touch</span
+        >
+        <h2
+          class="text-4xl md:text-5xl font-extrabold text-brand-950 tracking-tight mb-6"
+        >
+          Let's Connect
+        </h2>
+        <p class="text-lg text-brand-800/80 mb-12 font-medium max-w-xl mx-auto">
+          For bulk orders, distribution inquiries, or just to say hi. We’d love
+          to hear from you.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="glass-panel p-8 rounded-[2rem] hover:-translate-y-1 transition-transform"
+          >
+            <div
+              class="w-12 h-12 bg-surface rounded-full flex items-center justify-center text-brand-600 shadow-sm mx-auto mb-4 border border-brand-100"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <h4 class="font-bold text-brand-950 mb-1">Email Us</h4>
+            <p class="text-sm font-medium text-brand-800/70">
+              hello@neevfarm.com
+            </p>
+          </div>
+
+          <div
+            class="glass-panel p-8 rounded-[2rem] hover:-translate-y-1 transition-transform"
+          >
+            <div
+              class="w-12 h-12 bg-surface rounded-full flex items-center justify-center text-brand-600 shadow-sm mx-auto mb-4 border border-brand-100"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+            </div>
+            <h4 class="font-bold text-brand-950 mb-1">Call Us</h4>
+            <p class="text-sm font-medium text-brand-800/70">+91 98765 43210</p>
+            <p class="text-[10px] text-brand-500 mt-1 uppercase tracking-wider">
+              Rahul Sharma (Sales)
+            </p>
+          </div>
+
+          <div
+            class="glass-panel p-8 rounded-[2rem] hover:-translate-y-1 transition-transform"
+          >
+            <div
+              class="w-12 h-12 bg-surface rounded-full flex items-center justify-center text-brand-600 shadow-sm mx-auto mb-4 border border-brand-100"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <h4 class="font-bold text-brand-950 mb-1">Location</h4>
+            <p class="text-sm font-medium text-brand-800/70">
+              Mithila Region<br />Bihar, India
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer
+      class="bg-brand-950 text-surface pt-24 pb-12 px-6 relative overflow-hidden rounded-t-[3rem]"
+    >
+      <!-- Decorative bg SVG -->
+      <svg
+        class="absolute top-0 right-0 text-brand-900 opacity-30 w-full h-full object-cover pointer-events-none"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <path d="M0 0 L100 0 L100 100 Q 50 50 0 100 Z" fill="currentColor" />
+      </svg>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Massive CTA within footer -->
+        <div class="text-center mb-24 reveal-up">
+          <h2
+            class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tighter text-surface"
+          >
+            Ready for a better snack?
+          </h2>
+          <p class="text-xl text-brand-200 mb-10 font-medium max-w-xl mx-auto">
+            Get your 200g premium pack of pure Mithila Makhana delivered to your
+            door.
+          </p>
+
+          <div
+            class="flex flex-col sm:flex-row justify-center items-center gap-4"
+          >
+            <a
+              href="https://amazon.in"
+              target="_blank"
+              class="w-full sm:w-auto bg-amazon text-slate-900 px-8 py-4 rounded-full font-bold text-lg shadow-[0_0_20px_rgba(255,153,0,0.3)] hover:-translate-y-1 hover:scale-105 duration-300 flex items-center justify-center gap-3"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+              Buy on Amazon
+            </a>
+            <a
+              href="https://flipkart.com"
+              target="_blank"
+              class="w-full sm:w-auto bg-flipkart text-white px-8 py-4 rounded-full font-bold text-lg shadow-[0_0_20px_rgba(40,116,240,0.3)] hover:-translate-y-1 hover:scale-105 duration-300 flex items-center justify-center gap-3"
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+              Buy on Flipkart
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16 pt-16 border-t border-brand-800/50"
+        >
+          <!-- Brand -->
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center gap-2 mb-6 text-[#D4A35C]">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C12 22 20 18 20 12C20 6 12 2 12 2C12 2 4 6 4 12C4 18 12 22 12 22Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 22V12"
+                  stroke="#0E2122"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="text-2xl font-bold tracking-tight text-surface"
+                >NeevFarm</span
+              >
+            </div>
+            <p
+              class="text-brand-200/80 max-w-sm mb-8 leading-relaxed font-medium"
+            >
+              Bringing the purest, most nutritious Makhana straight from the
+              ponds of Mithila to your doorstep.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div>
+            <h4
+              class="text-surface font-bold mb-6 tracking-widest uppercase text-sm"
+            >
+              Navigation
+            </h4>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="#story"
+                  class="text-brand-200/80 hover:text-surface transition-colors font-medium"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#benefits"
+                  class="text-brand-200/80 hover:text-surface transition-colors font-medium"
+                  >Health Benefits</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  class="text-brand-200/80 hover:text-surface transition-colors font-medium"
+                  >Reviews</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h4
+              class="text-surface font-bold mb-6 tracking-widest uppercase text-sm"
+            >
+              Contact
+            </h4>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="mailto:hello@neevfarm.com"
+                  class="text-brand-200/80 hover:text-surface transition-colors font-medium"
+                  >hello@neevfarm.com</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tel:+919876543210"
+                  class="text-brand-200/80 hover:text-surface transition-colors font-medium"
+                  >+91 98765 43210</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-brand-800/50 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium text-brand-200/60"
+        >
+          <p>&copy; 2026 NeevFarm. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-surface transition-colors">Privacy</a>
+            <a href="#" class="hover:text-surface transition-colors">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts for premium interactions -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Setup Intersection Observer for scroll animations (spring effect)
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll(
+          ".reveal-up, .reveal-scale",
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Hide/Show floating nav on scroll down/up
+        let lastScroll = 0;
+        const nav = document.getElementById("nav-wrapper");
+
+        window.addEventListener("scroll", () => {
+          const currentScroll = window.pageYOffset;
+          if (currentScroll <= 0) {
+            nav.style.transform = "translateY(0)";
+            return;
+          }
+
+          if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scroll down - hide
+            nav.style.transform = "translateY(-150%)";
+          } else {
+            // Scroll up - show
+            nav.style.transform = "translateY(0)";
+          }
+          lastScroll = currentScroll;
+        });
+      });
+    </script>
+  </body>
+</html>
