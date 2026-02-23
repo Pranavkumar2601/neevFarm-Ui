@@ -4,53 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NeevFarm | Premium Mithila Makhana</title>
-
-    <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
-    <!-- FontAwesome Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Tailwind Configuration -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: {
-              sans: ['"Plus Jakarta Sans"', "sans-serif"],
-            },
+            fontFamily: { sans: ['"Plus Jakarta Sans"', "sans-serif"] },
             colors: {
               brand: {
-                green: "#235347", // Primary Premium Green
-                greenLight: "#E8F0ED", // Soft background tint for green
-                navy: "#112240", // Deep navy for high-contrast headings & footer
-                charcoal: "#334155", // Charcoal gray for readable body text
-                cream: "#F9F6F0", // Soft cream background
-                gold: "#D4AF37", // Elegant Gold for accents
-                coral: "#F26457", // Coral used sparingly (badges/highlights)
+                green: "#235347",
+                greenLight: "#E8F0ED",
+                navy: "#112240",
+                charcoal: "#334155",
+                cream: "#F9F6F0",
+                gold: "#D4AF37",
+                coral: "#F26457",
                 white: "#FFFFFF",
               },
-              shop: {
-                amazon: "#FF9900",
-                flipkart: "#2874F0",
-              },
+              shop: { amazon: "#FF9900", flipkart: "#2874F0" },
             },
             animation: {
-              marquee: "marquee 25s linear infinite",
-              float: "float 4s ease-in-out infinite",
+              marquee: "marquee 30s linear infinite",
+              float: "float 6s ease-in-out infinite",
               "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              "scale-up": "scale-up 20s ease-in-out infinite alternate",
+              "scale-up": "scale-up 25s ease-in-out infinite alternate",
+              "fade-in-up": "fade-in-up 0.8s ease-out forwards",
+              "fade-in-down": "fade-in-down 0.8s ease-out forwards",
+              "bounce-slow": "bounce 3s ease-in-out infinite",
+              shimmer: "shimmer 3s ease-in-out infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
             },
             keyframes: {
               marquee: {
@@ -58,30 +50,47 @@
                 "100%": { transform: "translateX(-100%)" },
               },
               float: {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-15px)" },
+                "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+                "33%": { transform: "translateY(-20px) rotate(2deg)" },
+                "66%": { transform: "translateY(-10px) rotate(-2deg)" },
               },
               "scale-up": {
                 "0%": { transform: "scale(1)" },
-                "100%": { transform: "scale(1.1)" },
+                "100%": { transform: "scale(1.15)" },
+              },
+              "fade-in-up": {
+                "0%": { opacity: "0", transform: "translateY(40px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              "fade-in-down": {
+                "0%": { opacity: "0", transform: "translateY(-40px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              shimmer: {
+                "0%": { backgroundPosition: "-200% 0" },
+                "100%": { backgroundPosition: "200% 0" },
+              },
+              glow: {
+                "0%": { boxShadow: "0 0 20px rgba(35, 83, 71, 0.3)" },
+                "100%": { boxShadow: "0 0 40px rgba(35, 83, 71, 0.6)" },
               },
             },
             boxShadow: {
               card: "0 10px 40px -10px rgba(17, 34, 64, 0.08)",
+              "card-hover": "0 20px 60px -15px rgba(17, 34, 64, 0.15)",
               button: "0 8px 20px -6px rgba(35, 83, 71, 0.4)",
+              "button-hover": "0 12px 30px -8px rgba(35, 83, 71, 0.6)",
+              glow: "0 0 30px rgba(212, 175, 55, 0.3)",
             },
           },
         },
       };
     </script>
-
     <style>
       body {
         background-color: #f9f6f0;
         color: #334155;
       }
-
-      /* Hide Scrollbar */
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -89,79 +98,213 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
-
-      /* Scroll Animations */
       .reveal-up {
         opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        transform: translateY(50px);
+        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
       }
       .reveal-up.active {
         opacity: 1;
         transform: translateY(0);
       }
-
-      /* Image Masking for clean look */
+      .reveal-up:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .reveal-up:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .reveal-up:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .reveal-up:nth-child(4) {
+        transition-delay: 0.4s;
+      }
       .product-img-bg {
         background: radial-gradient(circle at center, #ffffff 0%, #f9f6f0 70%);
+        position: relative;
+      }
+      .product-img-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(212, 175, 55, 0.08) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .navbar-scrolled {
+        box-shadow: 0 4px 30px -10px rgba(17, 34, 64, 0.1);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #e8f0ed 0%, #d4af37 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .card-hover-lift {
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .card-hover-lift:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 60px -15px rgba(17, 34, 64, 0.2);
+      }
+      .icon-spin-hover {
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+      .icon-spin-hover:hover {
+        transform: rotate(360deg) scale(1.1);
+      }
+      @keyframes gradient-rotate {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .gradient-border {
+        background: linear-gradient(90deg, #235347, #d4af37, #235347);
+        background-size: 200% 200%;
+        animation: gradient-rotate 3s ease infinite;
+      }
+      .badge-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .image-zoom-hover {
+        overflow: hidden;
+      }
+      .image-zoom-hover img {
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .image-zoom-hover:hover img {
+        transform: scale(1.15) rotate(2deg);
+      }
+      .btn-transition {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .btn-transition::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s,
+          height 0.6s;
+      }
+      .btn-transition:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      .feature-glow {
+        position: relative;
+      }
+      .feature-glow::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(212, 175, 55, 0.2),
+          transparent
+        );
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .feature-glow:hover::after {
+        opacity: 1;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 1rem);
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f9f6f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #235347;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #112240;
       }
     </style>
   </head>
   <body class="font-sans antialiased overflow-x-hidden">
-    <!-- 1. Top Announcement Bar (Commented out for now) -->
-    <!-- 
-    <div class="fixed top-0 left-0 w-full bg-brand-green text-white text-xs sm:text-sm font-semibold py-2.5 z-50 text-center tracking-wide shadow-sm">
-        ✨ 100% Pure Mithila Makhana • Sourced Directly from Farmers
-    </div> 
-    -->
-
-    <!-- 2. Navbar -->
-    <!-- Note: Changed top to 0 since announcement bar is hidden -->
     <header
       id="navbar"
-      class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-40 transition-all duration-300"
+      class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-lg border-b border-gray-100 z-40 transition-all duration-500"
     >
       <div
         class="max-w-7xl mx-auto px-5 lg:px-10 h-[76px] flex items-center justify-between"
       >
         <a
           href="#"
-          class="text-2xl font-extrabold text-brand-navy tracking-tighter flex items-center gap-2"
+          class="text-2xl font-extrabold text-brand-navy tracking-tighter flex items-center gap-2 group"
         >
-          <i class="fa-solid fa-leaf text-brand-green"></i> NeevFarm
+          <i class="fa-solid fa-leaf text-brand-green icon-spin-hover"></i>
+          <span class="relative"
+            >NeevFarm<span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"
+            ></span
+          ></span>
         </a>
-
         <nav
           class="hidden md:flex items-center gap-8 font-semibold text-sm text-brand-charcoal"
         >
-          <a href="#shop" class="hover:text-brand-green transition-colors"
-            >Shop</a
-          >
-          <a href="#range" class="hover:text-brand-green transition-colors"
-            >Flavors</a
-          >
-          <a href="#story" class="hover:text-brand-green transition-colors"
-            >Our Story</a
-          >
-          <a href="#contact" class="hover:text-brand-green transition-colors"
-            >Contact</a
-          >
+          <a href="#shop" class="relative group py-2"
+            ><span>Shop</span
+            ><span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"
+            ></span
+          ></a>
+          <a href="#range" class="relative group py-2"
+            ><span>Flavors</span
+            ><span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"
+            ></span
+          ></a>
+          <a href="#story" class="relative group py-2"
+            ><span>Our Story</span
+            ><span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"
+            ></span
+          ></a>
+          <a href="#contact" class="relative group py-2"
+            ><span>Contact</span
+            ><span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"
+            ></span
+          ></a>
         </nav>
-
         <a
           href="#shop"
-          class="bg-brand-green text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand-navy transition-colors shadow-button transform hover:scale-105 duration-200"
+          class="btn-transition bg-brand-green text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand-navy shadow-button hover:shadow-button-hover transform hover:scale-105 duration-300"
+          >Buy Now</a
         >
-          Buy Now
-        </a>
       </div>
     </header>
 
-    <!-- 3. Hero Section (Image Background + Overlay) -->
     <section
       class="relative w-full min-h-[85vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden"
     >
-      <!-- Animated Background Image -->
       <div class="absolute inset-0 z-0">
         <img
           src="hero3.png"
@@ -172,84 +315,97 @@
               'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=1920&auto=format&fit=crop'
           "
         />
-        <!-- Premium Dark Gradient Overlay -->
         <div
           class="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-green/40"
         ></div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            class="absolute top-1/4 left-1/4 w-2 h-2 bg-brand-gold/30 rounded-full animate-float"
+          ></div>
+          <div
+            class="absolute top-1/3 right-1/4 w-3 h-3 bg-brand-greenLight/20 rounded-full animate-float"
+            style="animation-delay: 1s"
+          ></div>
+          <div
+            class="absolute bottom-1/4 left-1/3 w-2 h-2 bg-brand-gold/40 rounded-full animate-float"
+            style="animation-delay: 2s"
+          ></div>
+        </div>
       </div>
-
       <div
         class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10 w-full pt-32 lg:pt-40 pb-20"
       >
-        <div class="max-w-2xl reveal-up">
-          <!-- Floating Badge -->
+        <div class="max-w-2xl">
           <div
-            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-gold font-bold text-xs uppercase tracking-widest mb-6 shadow-xl"
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-gold font-bold text-xs uppercase tracking-widest mb-6 shadow-glow animate-fade-in-down"
           >
-            <span
-              class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"
-            ></span>
-            Premium Harvest
+            <span class="w-2 h-2 rounded-full bg-brand-gold badge-pulse"></span
+            >Premium Harvest
           </div>
-
-          <!-- Hero Headline -->
           <h1
             class="text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg"
           >
-            The Crunch of <br />
-            <span class="text-brand-greenLight">Pure Mithila.</span>
+            <span class="block animate-fade-in-up" style="animation-delay: 0.2s"
+              >The Crunch of</span
+            >
+            <span
+              class="block gradient-text animate-fade-in-up"
+              style="animation-delay: 0.4s"
+              >Pure Mithila.</span
+            >
           </h1>
-
-          <!-- Hero Subtitle -->
           <p
-            class="text-lg text-brand-cream/90 mb-10 font-medium leading-relaxed drop-shadow-md max-w-xl"
+            class="text-lg text-brand-cream/90 mb-10 font-medium leading-relaxed drop-shadow-md max-w-xl animate-fade-in-up"
+            style="animation-delay: 0.6s"
           >
             Hand-harvested from the heartland of Makhana, our foxnuts are
             traditionally roasted to golden perfection. Unadulterated,
             guilt-free, and irresistibly crunchy.
           </p>
-
-          <!-- CTAs -->
           <div
-            class="flex flex-col sm:flex-row items-center justify-start gap-4"
+            class="flex flex-col sm:flex-row items-center justify-start gap-4 animate-fade-in-up"
+            style="animation-delay: 0.8s"
           >
             <a
               href="#shop"
-              class="w-full sm:w-auto px-8 py-4 bg-brand-green text-white rounded-full font-bold text-lg hover:bg-white hover:text-brand-green transition-all shadow-[0_0_20px_rgba(35,83,71,0.6)] flex items-center justify-center gap-2 transform hover:-translate-y-1"
+              class="btn-transition w-full sm:w-auto px-8 py-4 bg-brand-green text-white rounded-full font-bold text-lg hover:bg-white hover:text-brand-green transition-all shadow-[0_0_20px_rgba(35,83,71,0.6)] hover:shadow-[0_0_30px_rgba(35,83,71,0.8)] flex items-center justify-center gap-2 transform hover:-translate-y-1 group"
             >
-              Explore Product <i class="fa-solid fa-arrow-right"></i>
+              Explore Product
+              <i
+                class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"
+              ></i>
             </a>
             <a
               href="#story"
-              class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2"
+              class="btn-transition w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all flex items-center justify-center gap-2"
+              >Our Story</a
             >
-              Our Story
-            </a>
           </div>
-
-          <!-- Trust Badges -->
           <div
-            class="mt-10 flex items-center justify-start gap-6 text-sm font-semibold text-brand-cream/80"
+            class="mt-10 flex items-center justify-start gap-6 text-sm font-semibold text-brand-cream/80 animate-fade-in-up"
+            style="animation-delay: 1s"
           >
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-check-circle text-brand-gold text-lg"></i>
-              100% Natural
+            <div class="flex items-center gap-2 group">
+              <i
+                class="fa-solid fa-check-circle text-brand-gold text-lg group-hover:scale-110 transition-transform"
+              ></i
+              >100% Natural
             </div>
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-check-circle text-brand-gold text-lg"></i>
-              Direct from Farm
+            <div class="flex items-center gap-2 group">
+              <i
+                class="fa-solid fa-check-circle text-brand-gold text-lg group-hover:scale-110 transition-transform"
+              ></i
+              >Direct from Farm
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. Infinite Marquee (Navy + Gold) -->
     <div
       class="bg-brand-navy py-4 overflow-hidden flex border-y border-brand-navy"
     >
       <div class="flex whitespace-nowrap animate-marquee">
-        <!-- Repeat enough times to cover screen -->
         <div
           class="flex items-center text-brand-cream font-bold text-sm tracking-widest uppercase mx-4 gap-8"
         >
@@ -301,9 +457,14 @@
       </div>
     </div>
 
-    <!-- 5. Featured Product Section -->
-    <section id="shop" class="py-20 lg:py-28 bg-white relative">
-      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <section id="shop" class="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-brand-greenLight/30 rounded-full blur-3xl -z-0"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-brand-cream rounded-full blur-3xl -z-0"
+      ></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10">
         <div class="text-center mb-16 reveal-up">
           <h2 class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-4">
             Our Signature Bestseller
@@ -312,31 +473,35 @@
             Grab your pack of authentic goodness today.
           </p>
         </div>
-
         <div
-          class="bg-brand-cream border border-gray-100 rounded-[2rem] p-6 lg:p-12 shadow-card grid lg:grid-cols-2 gap-12 items-center reveal-up"
+          class="bg-brand-cream border border-gray-100 rounded-[2rem] p-6 lg:p-12 shadow-card hover:shadow-card-hover transition-all duration-500 grid lg:grid-cols-2 gap-12 items-center reveal-up"
         >
-          <!-- Product Image -->
           <div
-            class="relative product-img-bg rounded-3xl p-8 flex justify-center overflow-hidden group"
+            class="relative product-img-bg rounded-3xl p-8 flex justify-center overflow-hidden group image-zoom-hover"
           >
             <img
               src="product.jpeg"
               alt="NeevFarm Mithila Makhana"
-              class="w-[85%] max-w-[350px] object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 z-10"
+              class="w-[85%] max-w-[350px] object-contain drop-shadow-2xl transition-transform duration-700 z-10"
               onerror="
                 this.src =
                   'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=800&auto=format&fit=crop'
               "
             />
             <div
-              class="absolute top-4 left-4 bg-brand-coral text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm uppercase tracking-wide z-20"
+              class="absolute top-4 left-4 bg-brand-coral text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm uppercase tracking-wide z-20 animate-bounce-slow"
             >
               200g Pack
             </div>
+            <div
+              class="absolute top-1/4 right-1/4 w-16 h-16 bg-brand-gold/10 rounded-full blur-xl animate-float"
+              style="animation-delay: 0.5s"
+            ></div>
+            <div
+              class="absolute bottom-1/4 left-1/4 w-20 h-20 bg-brand-green/10 rounded-full blur-xl animate-float"
+              style="animation-delay: 1.5s"
+            ></div>
           </div>
-
-          <!-- Product Details -->
           <div>
             <h3
               class="text-3xl lg:text-4xl font-extrabold text-brand-navy mb-2"
@@ -348,58 +513,53 @@
             >
               Classic Roasted
             </div>
-
             <p class="text-brand-charcoal mb-8 leading-relaxed">
               Sourced from the pristine waters of Bihar, our makhanas are slowly
               roasted to retain their natural crunch and nutritional value. The
               perfect swap for unhealthy fried chips.
             </p>
-
-            <!-- Features -->
             <div class="grid grid-cols-2 gap-4 mb-8">
               <div
-                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 feature-glow card-hover-lift"
               >
                 <i
-                  class="fa-solid fa-bowl-rice text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                  class="fa-solid fa-bowl-rice text-brand-green bg-brand-greenLight p-2 rounded-lg transition-transform hover:scale-110"
                 ></i>
                 <span class="font-bold text-sm text-brand-navy"
                   >Rich in Calcium</span
                 >
               </div>
               <div
-                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 feature-glow card-hover-lift"
               >
                 <i
-                  class="fa-solid fa-leaf text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                  class="fa-solid fa-leaf text-brand-green bg-brand-greenLight p-2 rounded-lg transition-transform hover:scale-110"
                 ></i>
                 <span class="font-bold text-sm text-brand-navy"
                   >Plant Protein</span
                 >
               </div>
               <div
-                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 feature-glow card-hover-lift"
               >
                 <i
-                  class="fa-solid fa-droplet-slash text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                  class="fa-solid fa-droplet-slash text-brand-green bg-brand-greenLight p-2 rounded-lg transition-transform hover:scale-110"
                 ></i>
                 <span class="font-bold text-sm text-brand-navy"
                   >Zero Trans Fat</span
                 >
               </div>
               <div
-                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100"
+                class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 feature-glow card-hover-lift"
               >
                 <i
-                  class="fa-solid fa-clock text-brand-green bg-brand-greenLight p-2 rounded-lg"
+                  class="fa-solid fa-clock text-brand-green bg-brand-greenLight p-2 rounded-lg transition-transform hover:scale-110"
                 ></i>
                 <span class="font-bold text-sm text-brand-navy"
                   >6 Month Shelf Life</span
                 >
               </div>
             </div>
-
-            <!-- Marketplace Buttons -->
             <div class="space-y-4">
               <p
                 class="text-xs font-bold text-brand-charcoal uppercase tracking-widest text-center sm:text-left mb-2"
@@ -410,24 +570,23 @@
                 <a
                   href="https://www.amazon.in/"
                   target="_blank"
-                  class="flex-1 bg-white border-2 border-shop-amazon text-gray-900 rounded-xl font-bold text-lg py-3.5 hover:bg-shop-amazon hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm"
+                  class="btn-transition flex-1 bg-white border-2 border-shop-amazon text-gray-900 rounded-xl font-bold text-lg py-3.5 hover:bg-shop-amazon hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow-lg"
                 >
                   <i
                     class="fa-brands fa-amazon text-xl group-hover:scale-110 transition-transform"
-                  ></i>
-                  Amazon
+                  ></i
+                  >Amazon
                 </a>
                 <a
                   href="https://www.flipkart.com/"
                   target="_blank"
-                  class="flex-1 bg-white border-2 border-shop-flipkart text-shop-flipkart rounded-xl font-bold text-lg py-3.5 hover:bg-shop-flipkart hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm"
+                  class="btn-transition flex-1 bg-white border-2 border-shop-flipkart text-shop-flipkart rounded-xl font-bold text-lg py-3.5 hover:bg-shop-flipkart hover:text-white transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow-lg"
                 >
                   <img
                     src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/logo_lite-cbb357.png"
                     alt="Flipkart"
                     class="h-5 group-hover:brightness-0 group-hover:invert transition-all"
-                  />
-                  Flipkart
+                  />Flipkart
                 </a>
               </div>
             </div>
@@ -436,13 +595,11 @@
       </div>
     </section>
 
-    <!-- 5.5 Product Range Carousel -->
     <section
       id="range"
       class="py-20 bg-brand-cream border-t border-gray-200 overflow-hidden"
     >
       <div class="max-w-7xl mx-auto px-5 lg:px-10">
-        <!-- Header & Controls -->
         <div
           class="flex flex-col md:flex-row justify-between items-end mb-10 reveal-up"
         >
@@ -459,40 +616,37 @@
           <div class="hidden md:flex gap-3">
             <button
               id="prevCarousel"
-              class="w-12 h-12 rounded-full border border-brand-green text-brand-green flex items-center justify-center hover:bg-brand-green hover:text-white transition-colors"
+              class="w-12 h-12 rounded-full border-2 border-brand-green text-brand-green flex items-center justify-center hover:bg-brand-green hover:text-white transition-all duration-300 hover:scale-110"
             >
               <i class="fa-solid fa-arrow-left"></i>
             </button>
             <button
               id="nextCarousel"
-              class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center hover:bg-brand-navy transition-colors shadow-button"
+              class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center hover:bg-brand-navy transition-all duration-300 shadow-button hover:shadow-button-hover hover:scale-110"
             >
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
         </div>
-
-        <!-- Carousel Wrapper -->
         <div
           id="productCarousel"
           class="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 pt-4 reveal-up"
           style="scroll-behavior: smooth"
         >
-          <!-- Flavor 1 -->
           <div
-            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group card-hover-lift"
           >
             <div
-              class="bg-brand-cream rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+              class="bg-brand-cream rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden image-zoom-hover"
             >
               <span
-                class="absolute top-3 left-3 bg-brand-coral text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-20"
+                class="absolute top-3 left-3 bg-brand-coral text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-20 badge-pulse"
                 >Bestseller</span
               >
               <img
-                src="../assets/product.jpeg"
+                src="product.jpeg"
                 alt="Classic Roasted"
-                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                class="h-[90%] object-contain drop-shadow-lg relative z-10"
                 onerror="
                   this.src =
                     'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=400&auto=format&fit=crop'
@@ -511,22 +665,20 @@
             </p>
             <a
               href="#shop"
-              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              class="btn-transition w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-all"
               >Buy Now</a
             >
           </div>
-
-          <!-- Flavor 2 -->
           <div
-            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group card-hover-lift"
           >
             <div
-              class="bg-[#fff5ee] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+              class="bg-[#fff5ee] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden image-zoom-hover"
             >
               <img
-                src="../assets/product.jpeg"
+                src="product.jpeg"
                 alt="Spicy Peri Peri"
-                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                class="h-[90%] object-contain drop-shadow-lg relative z-10"
                 style="filter: hue-rotate(140deg) saturate(1.2)"
                 onerror="
                   this.src =
@@ -546,22 +698,20 @@
             </p>
             <a
               href="#shop"
-              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              class="btn-transition w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-all"
               >Buy Now</a
             >
           </div>
-
-          <!-- Flavor 3 -->
           <div
-            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group hover:shadow-card transition-shadow"
+            class="snap-start shrink-0 w-[85%] sm:w-[45%] lg:w-[31%] bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100 group card-hover-lift"
           >
             <div
-              class="bg-[#f5f8ff] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden"
+              class="bg-[#f5f8ff] rounded-2xl h-60 flex justify-center items-center mb-6 relative overflow-hidden image-zoom-hover"
             >
               <img
-                src="../assets/product.jpeg"
+                src="product.jpeg"
                 alt="Cream & Onion"
-                class="h-[90%] object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-500 relative z-10"
+                class="h-[90%] object-contain drop-shadow-lg relative z-10"
                 style="filter: hue-rotate(220deg) brightness(1.1)"
                 onerror="
                   this.src =
@@ -581,7 +731,7 @@
             </p>
             <a
               href="#shop"
-              class="w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-colors"
+              class="btn-transition w-full block text-center py-3 border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green hover:text-white transition-all"
               >Buy Now</a
             >
           </div>
@@ -589,9 +739,24 @@
       </div>
     </section>
 
-    <!-- 6. The NeevFarm Way (Green + Cream + Gold) -->
-    <section id="story" class="py-20 bg-brand-green text-white relative">
-      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <section
+      id="story"
+      class="py-20 bg-brand-green text-white relative overflow-hidden"
+    >
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-0 left-0 w-full h-full"
+          style="
+            background-image: radial-gradient(
+              circle,
+              white 1px,
+              transparent 1px
+            );
+            background-size: 30px 30px;
+          "
+        ></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10">
         <div class="text-center mb-16 reveal-up">
           <h2 class="text-3xl lg:text-4xl font-extrabold mb-4 text-white">
             The NeevFarm Way
@@ -601,17 +766,13 @@
             directly from the ponds of Mithila to your pantry.
           </p>
         </div>
-
         <div class="grid md:grid-cols-3 gap-8 relative">
-          <!-- Connecting Line for desktop -->
           <div
-            class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-brand-gold/30 z-0"
+            class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-brand-gold/30 z-0 gradient-border"
           ></div>
-
-          <!-- Step 1 -->
-          <div class="text-center relative z-10 reveal-up">
+          <div class="text-center relative z-10 reveal-up group">
             <div
-              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
             >
               <i class="fa-solid fa-water"></i>
             </div>
@@ -621,14 +782,9 @@
               Mithila region.
             </p>
           </div>
-
-          <!-- Step 2 -->
-          <div
-            class="text-center relative z-10 reveal-up"
-            style="transition-delay: 0.1s"
-          >
+          <div class="text-center relative z-10 reveal-up group">
             <div
-              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
             >
               <i class="fa-solid fa-fire-burner"></i>
             </div>
@@ -638,14 +794,9 @@
               signature crunch.
             </p>
           </div>
-
-          <!-- Step 3 -->
-          <div
-            class="text-center relative z-10 reveal-up"
-            style="transition-delay: 0.2s"
-          >
+          <div class="text-center relative z-10 reveal-up group">
             <div
-              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-xl"
+              class="w-24 h-24 mx-auto bg-brand-navy border-4 border-brand-gold rounded-full flex items-center justify-center text-brand-gold text-3xl mb-6 shadow-glow transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
             >
               <i class="fa-solid fa-box-open"></i>
             </div>
@@ -659,7 +810,6 @@
       </div>
     </section>
 
-    <!-- 7. Usage Occasions -->
     <section id="benefits" class="py-20 lg:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-5 lg:px-10">
         <h2
@@ -667,96 +817,103 @@
         >
           Your Perfect Snacking Partner
         </h2>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Card 1 -->
           <div
-            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
           >
             <img
               src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=600&auto=format&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               alt="Chai Time"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/40 to-transparent flex flex-col justify-end p-6 group-hover:from-brand-navy/100 transition-all duration-500"
             >
               <p
-                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1 transform group-hover:translate-y-0 translate-y-2 transition-transform"
               >
                 Evening
               </p>
-              <h3 class="text-white font-bold text-xl">Chai Time Companion</h3>
+              <h3
+                class="text-white font-bold text-xl transform group-hover:translate-y-0 translate-y-2 transition-transform"
+              >
+                Chai Time Companion
+              </h3>
             </div>
           </div>
-          <!-- Card 2 -->
           <div
-            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
-            style="transition-delay: 0.1s"
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
           >
             <img
               src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=600&auto=format&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               alt="Fasting Food"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/40 to-transparent flex flex-col justify-end p-6 group-hover:from-brand-navy/100 transition-all duration-500"
             >
               <p
-                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1 transform group-hover:translate-y-0 translate-y-2 transition-transform"
               >
                 Traditional
               </p>
-              <h3 class="text-white font-bold text-xl">Vrat / Fasting Food</h3>
+              <h3
+                class="text-white font-bold text-xl transform group-hover:translate-y-0 translate-y-2 transition-transform"
+              >
+                Vrat / Fasting Food
+              </h3>
             </div>
           </div>
-          <!-- Card 3 -->
           <div
-            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
-            style="transition-delay: 0.2s"
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
           >
             <img
               src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               alt="Fitness Snack"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/40 to-transparent flex flex-col justify-end p-6 group-hover:from-brand-navy/100 transition-all duration-500"
             >
               <p
-                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1 transform group-hover:translate-y-0 translate-y-2 transition-transform"
               >
                 Healthy
               </p>
-              <h3 class="text-white font-bold text-xl">Post-Workout Crunch</h3>
+              <h3
+                class="text-white font-bold text-xl transform group-hover:translate-y-0 translate-y-2 transition-transform"
+              >
+                Post-Workout Crunch
+              </h3>
             </div>
           </div>
-          <!-- Card 4 -->
           <div
-            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card"
-            style="transition-delay: 0.3s"
+            class="relative group rounded-[2rem] overflow-hidden h-72 reveal-up cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
           >
             <img
               src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=600&auto=format&fit=crop"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               alt="Diet Friendly"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/30 to-transparent flex flex-col justify-end p-6 transition-colors"
+              class="absolute inset-0 bg-gradient-to-t from-brand-navy/95 via-brand-navy/40 to-transparent flex flex-col justify-end p-6 group-hover:from-brand-navy/100 transition-all duration-500"
             >
               <p
-                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1"
+                class="text-brand-coral text-xs font-bold uppercase tracking-widest mb-1 transform group-hover:translate-y-0 translate-y-2 transition-transform"
               >
                 Midnight
               </p>
-              <h3 class="text-white font-bold text-xl">Guilt-Free Binge</h3>
+              <h3
+                class="text-white font-bold text-xl transform group-hover:translate-y-0 translate-y-2 transition-transform"
+              >
+                Guilt-Free Binge
+              </h3>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. Redesigned Contact Us Section (Card Template, No Form) -->
     <section
       id="contact"
       class="py-20 lg:py-28 bg-brand-cream border-t border-gray-200"
@@ -764,7 +921,7 @@
       <div class="max-w-7xl mx-auto px-5 lg:px-10">
         <div class="text-center mb-16 reveal-up">
           <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold font-bold text-xs uppercase tracking-widest mb-4"
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold font-bold text-xs uppercase tracking-widest mb-4 badge-pulse"
           >
             Get In Touch
           </div>
@@ -776,14 +933,12 @@
             share your snacking experience? Reach out to us directly.
           </p>
         </div>
-
         <div class="grid md:grid-cols-3 gap-6 lg:gap-10 reveal-up">
-          <!-- Contact Card 1: Location -->
           <div
-            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-green text-center group hover:-translate-y-2 transition-transform duration-300"
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-green text-center group card-hover-lift feature-glow"
           >
             <div
-              class="w-16 h-16 mx-auto bg-brand-greenLight rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors"
+              class="w-16 h-16 mx-auto bg-brand-greenLight rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition-all duration-500 icon-spin-hover"
             >
               <i class="fa-solid fa-location-dot"></i>
             </div>
@@ -791,17 +946,14 @@
               Head Office
             </h4>
             <p class="text-brand-charcoal font-medium leading-relaxed">
-              Mithila Region <br />
-              Bihar, India
+              Mithila Region <br />Bihar, India
             </p>
           </div>
-
-          <!-- Contact Card 2: Email -->
           <div
-            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-gold text-center group hover:-translate-y-2 transition-transform duration-300"
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-gold text-center group card-hover-lift feature-glow"
           >
             <div
-              class="w-16 h-16 mx-auto bg-brand-cream rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors"
+              class="w-16 h-16 mx-auto bg-brand-cream rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all duration-500 icon-spin-hover"
             >
               <i class="fa-solid fa-envelope"></i>
             </div>
@@ -811,20 +963,17 @@
             <a
               href="mailto:hello@neevfarm.com"
               class="text-brand-charcoal font-medium hover:text-brand-gold transition-colors inline-block"
+              >hello@neevfarm.com</a
             >
-              hello@neevfarm.com
-            </a>
             <p class="text-sm text-gray-400 mt-2">
               We typically reply within 24 hours.
             </p>
           </div>
-
-          <!-- Contact Card 3: Phone -->
           <div
-            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-navy text-center group hover:-translate-y-2 transition-transform duration-300"
+            class="bg-white rounded-[2rem] p-8 shadow-card border-t-4 border-brand-navy text-center group card-hover-lift feature-glow"
           >
             <div
-              class="w-16 h-16 mx-auto bg-[#eef2f6] rounded-full flex items-center justify-center text-brand-navy text-2xl mb-6 group-hover:bg-brand-navy group-hover:text-white transition-colors"
+              class="w-16 h-16 mx-auto bg-[#eef2f6] rounded-full flex items-center justify-center text-brand-navy text-2xl mb-6 group-hover:bg-brand-navy group-hover:text-white transition-all duration-500 icon-spin-hover"
             >
               <i class="fa-solid fa-phone"></i>
             </div>
@@ -832,92 +981,80 @@
             <a
               href="tel:+919876543210"
               class="text-brand-charcoal font-medium hover:text-brand-navy transition-colors inline-block"
+              >+91 98765 43210</a
             >
-              +91 98765 43210
-            </a>
             <p class="text-sm text-gray-400 mt-2">Mon-Fri, 9am to 6pm IST</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 9. Footer (Navy + White) -->
     <footer class="bg-brand-navy text-white border-t-4 border-brand-green">
-      <!-- Main Footer Links -->
       <div
         class="max-w-7xl mx-auto px-5 lg:px-10 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left"
       >
         <div>
           <a
             href="#"
-            class="text-2xl font-extrabold text-white tracking-tight flex items-center justify-center md:justify-start gap-2 mb-2"
+            class="text-2xl font-extrabold text-white tracking-tight flex items-center justify-center md:justify-start gap-2 mb-2 group"
           >
-            <i class="fa-solid fa-leaf text-brand-gold"></i> NeevFarm
+            <i class="fa-solid fa-leaf text-brand-gold icon-spin-hover"></i>
+            NeevFarm
           </a>
           <p class="text-sm text-brand-cream/70">
             Pureness of nature, delivered straight to your home.
           </p>
         </div>
-
         <div class="flex gap-6">
           <a
             href="#"
-            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            class="text-brand-cream/70 hover:text-brand-coral transition-all duration-300 text-xl hover:scale-125 transform"
             ><i class="fa-brands fa-instagram"></i
           ></a>
           <a
             href="#"
-            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            class="text-brand-cream/70 hover:text-brand-coral transition-all duration-300 text-xl hover:scale-125 transform"
             ><i class="fa-brands fa-facebook-f"></i
           ></a>
           <a
             href="#"
-            class="text-brand-cream/70 hover:text-brand-coral transition-colors text-xl"
+            class="text-brand-cream/70 hover:text-brand-coral transition-all duration-300 text-xl hover:scale-125 transform"
             ><i class="fa-brands fa-twitter"></i
           ></a>
         </div>
       </div>
-
-      <!-- Copyright -->
       <div class="bg-[#0b162a] py-4 text-center text-xs text-brand-cream/50">
         <p>&copy; 2026 NeevFarm. All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- Mobile Sticky Footer CTA (Appears only on mobile) -->
     <div
-      class="fixed bottom-0 left-0 w-full bg-white px-4 py-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-50 md:hidden flex items-center gap-3 border-t border-gray-100 pb-safe"
+      class="fixed bottom-0 left-0 w-full bg-white px-4 py-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)] z-50 md:hidden flex items-center gap-3 border-t border-gray-100 pb-safe backdrop-blur-lg bg-white/95"
     >
       <a
         href="https://www.amazon.in/"
         target="_blank"
-        class="flex-1 bg-[#FFF9F0] border border-[#FF9900]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2"
+        class="btn-transition flex-1 bg-[#FFF9F0] border border-[#FF9900]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2 hover:bg-[#FF9900] hover:text-white"
+        ><i class="fa-brands fa-amazon text-[#FF9900] text-lg"></i> Amazon</a
       >
-        <i class="fa-brands fa-amazon text-[#FF9900] text-lg"></i> Amazon
-      </a>
       <a
         href="https://www.flipkart.com/"
         target="_blank"
-        class="flex-1 bg-[#F0F5FF] border border-[#2874F0]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2"
-      >
-        <img
+        class="btn-transition flex-1 bg-[#F0F5FF] border border-[#2874F0]/30 text-gray-900 py-3 rounded-xl font-bold shadow-sm text-sm flex justify-center items-center gap-2 hover:bg-[#2874F0] hover:text-white"
+        ><img
           src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/logo_lite-cbb357.png"
           alt="Flipkart"
           class="h-4 filter brightness-0"
-        />
-        Flipkart
-      </a>
+        />Flipkart</a
+      >
     </div>
 
-    <!-- Scripts -->
     <script>
-      // Intersection Observer for scroll animations
       const observerOptions = {
         root: null,
         rootMargin: "0px",
-        threshold: 0.1,
+        threshold: 0.15,
       };
-
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -926,28 +1063,82 @@
           }
         });
       }, observerOptions);
-
       document.querySelectorAll(".reveal-up").forEach((element) => {
         observer.observe(element);
       });
 
-      // Carousel Scroll Logic
+      const navbar = document.getElementById("navbar");
+      let lastScroll = 0;
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 100) {
+          navbar.classList.add("navbar-scrolled");
+        } else {
+          navbar.classList.remove("navbar-scrolled");
+        }
+        lastScroll = currentScroll;
+      });
+
       const carousel = document.getElementById("productCarousel");
       const prevBtn = document.getElementById("prevCarousel");
       const nextBtn = document.getElementById("nextCarousel");
-
       if (prevBtn && nextBtn && carousel) {
-        // Scroll amount based roughly on typical card width + gap
-        const scrollAmount = 350;
-
+        const scrollAmount = 380;
         nextBtn.addEventListener("click", () => {
           carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
         });
-
         prevBtn.addEventListener("click", () => {
           carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
         });
+        const updateButtons = () => {
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          prevBtn.style.opacity = carousel.scrollLeft <= 0 ? "0.5" : "1";
+          nextBtn.style.opacity =
+            carousel.scrollLeft >= maxScroll ? "0.5" : "1";
+        };
+        carousel.addEventListener("scroll", updateButtons);
+        updateButtons();
       }
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              img.classList.add("loaded");
+              observer.unobserve(img);
+            }
+          });
+        });
+        document.querySelectorAll("img").forEach((img) => {
+          imageObserver.observe(img);
+        });
+      }
+
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+      const optimizedScroll = debounce(() => {}, 10);
+      window.addEventListener("scroll", optimizedScroll);
     </script>
   </body>
 </html>
